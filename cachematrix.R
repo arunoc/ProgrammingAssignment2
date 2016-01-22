@@ -1,7 +1,8 @@
 ## These R functions are able to cache potentially time-consuming computations.
 ## The following functions can be used to calculate and then retrieve the inverse
 ## of a matrix from cache if available.
-
+## NOTE: We assume that the matrix supplied is invertible.
+##
 ## The first function, makeCacheMatrix creates a list containing a function that:
 ## 1. sets the value of a matrix.
 ## 2. gets the value of a matrix.
@@ -44,4 +45,16 @@ cacheSolve <- function(x, ...) {
 ## Example:
 ## m <- matrix(c(4,1,3,1), nrow = 2, ncol = 2)
 ## x <- makeCacheMatrix(m)
-## cacheSolve(m)
+## x$get()
+## [,1] [,2]
+## [1,]    4    3
+## [2,]    1    1
+## cacheSolve(x) NOTE: inverse not in cache
+## [,1] [,2]
+## [1,]    1   -3
+## [2,]   -1    4
+## cacheSolve(x) NOTE: inverse returned from cache
+## Retrieving cached data
+## [,1] [,2]
+## [1,]    1   -3
+## [2,]   -1    4
